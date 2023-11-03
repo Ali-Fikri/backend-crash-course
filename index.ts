@@ -23,6 +23,18 @@ app.post("/sayHello", (req: Request, res: Response) => {
     res.status(400).send("Name is required");
   }
 });
+
+app.get('/userData', (req: Request, res: Response) => {
+
+  console.log(req.query)
+  res.json({
+    name: req.query.name,
+    age: req.query.age,
+    language: req.query.language,
+
+  })
+})
+
 app.get("/sayHello", (req: Request, res: Response) => {
   console.log(req.query);
   res.send(`your age is ${req.query.age}`)
