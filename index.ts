@@ -1,11 +1,19 @@
-const express = require("express");
+import express, { Request, Response } from "express";
 const app = express();
 const port = 3000;
 
-app.get("/", (req, res) => {
+app.get("/", (req: Request, res: Response) => {
   res.send("hello world");
 });
 
-app.listen(port, ()=> {
-  console.log(`Example app listening on port ${port}`)
-})
+app.post("/post", (req: Request, res: Response) => {
+  res.send("New Post");
+});
+
+app.delete("/delete", (req: Request, res: Response) => {
+  res.send("Delete something");
+});
+
+app.listen(port, () => {
+  console.log(`Example app listening on port ${port}`);
+});
