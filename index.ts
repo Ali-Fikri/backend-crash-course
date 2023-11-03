@@ -23,6 +23,10 @@ app.post("/sayHello", (req: Request, res: Response) => {
     res.status(400).send("Name is required");
   }
 });
+app.get("/sayHello", (req: Request, res: Response) => {
+  console.log(req.query);
+  res.send(`your age is ${req.query.age}`)
+});
 
 app.post("/post", (req: Request, res: Response) => {
   res.send("New Post");
