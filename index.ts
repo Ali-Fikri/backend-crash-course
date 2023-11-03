@@ -35,6 +35,11 @@ app.get('/userData', (req: Request, res: Response) => {
   })
 })
 
+app.get('/posts', (req: Request, res: Response) => {
+
+  res.sendFile(`${__dirname}/posts/posts.html`)
+})
+
 app.get("/sayHello", (req: Request, res: Response) => {
   console.log(req.query);
   res.send(`your age is ${req.query.age}`)
