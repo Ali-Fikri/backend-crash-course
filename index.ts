@@ -6,6 +6,13 @@ app.get("/", (req: Request, res: Response) => {
   res.send("hello world");
 });
 
+app.get("/findSummation/:number1/:number2", (req: Request, res: Response) => {
+  const num1 = Number(req.params.number1);
+  const num2 = Number(req.params.number2);
+
+  res.send(`The total is: ${num1 + num2}`);
+});
+
 app.post("/post", (req: Request, res: Response) => {
   res.send("New Post");
 });
