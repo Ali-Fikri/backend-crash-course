@@ -1,5 +1,7 @@
 import express, { Request, Response } from "express";
+
 const app = express();
+app.use(express.json());
 const port = 3000;
 
 app.get("/", (req: Request, res: Response) => {
@@ -11,6 +13,15 @@ app.get("/findSummation/:number1/:number2", (req: Request, res: Response) => {
   const num2 = Number(req.params.number2);
 
   res.send(`The total is: ${num1 + num2}`);
+});
+
+app.post("/sayHello", (req: Request, res: Response) => {
+  console.log(req.body);
+  if (req.body.name) {
+    res.send(`Hello ${req.body.name}`);
+  } else {
+    res.status(400).send("Name is required");
+  }
 });
 
 app.post("/post", (req: Request, res: Response) => {
