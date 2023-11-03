@@ -37,21 +37,24 @@ app.get('/userData', (req: Request, res: Response) => {
 
 app.get('/posts', (req: Request, res: Response) => {
 
-  res.sendFile(`${__dirname}/posts/posts.html`)
+  res.render(`posts.ejs`, {
+    name: 'Ali'
+  })
 })
 
-app.get("/sayHello", (req: Request, res: Response) => {
-  console.log(req.query);
-  res.send(`your age is ${req.query.age}`)
-});
 
-app.post("/post", (req: Request, res: Response) => {
-  res.send("New Post");
-});
+// app.get("/sayHello", (req: Request, res: Response) => {
+//   console.log(req.query);
+//   res.send(`your age is ${req.query.age}`)
+// });
 
-app.delete("/delete", (req: Request, res: Response) => {
-  res.send("Delete something");
-});
+// app.post("/post", (req: Request, res: Response) => {
+//   res.send("New Post");
+// });
+
+// app.delete("/delete", (req: Request, res: Response) => {
+//   res.send("Delete something");
+// });
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
