@@ -17,6 +17,16 @@ mongoose
     console.log("connecting the error with DB", error);
   });
 
+app.get("/showArticles", async (req: Request, res: Response) => {
+  try {
+    const articles = await Article.find();
+    res.render("articles.ejs", { allArticles: articles });
+    return;
+  } catch (error) {
+    console.log("Error while reading Articles", error);
+  }
+});
+
 // app.get("/", (req: Request, res: Response) => {
 //   res.send("hello world");
 // });
@@ -28,40 +38,40 @@ mongoose
 //   res.send(`The total is: ${num1 + num2}`);
 // });
 
-app.post("/articles", async (req: Request, res: Response) => {
-  const newArticle = new Article();
-  newArticle.title = req.body.articleTitle;
-  newArticle.body = req.body.articleBody;
-  newArticle.numberOfLikes = 0;
-  await newArticle.save();
+// app.post("/articles", async (req: Request, res: Response) => {
+//   const newArticle = new Article();
+//   newArticle.title = req.body.articleTitle;
+//   newArticle.body = req.body.articleBody;
+//   newArticle.numberOfLikes = 0;
+//   await newArticle.save();
 
-  res.json(newArticle);
-  res.send("the new article has been stored");
-});
+//   res.json(newArticle);
+//   res.send("the new article has been stored");
+// });
 
-app.get("/articles/:articleId", async (req: Request, res: Response) => {
-  const id = req.params.articleId;
+// app.get("/articles/:articleId", async (req: Request, res: Response) => {
+//   const id = req.params.articleId;
 
-  try {
-    const article = await Article.findById(id);
-    res.json(article);
-  } catch (error) {
-    console.log("error while reading id:", id);
-    return res.send("Error");
-  }
-});
+//   try {
+//     const article = await Article.findById(id);
+//     res.json(article);
+//   } catch (error) {
+//     console.log("error while reading id:", id);
+//     return res.send("Error");
+//   }
+// });
 
-app.delete("/articles/:articleId", async (req: Request, res: Response) => {
-  const id = req.params.articleId;
+// app.delete("/articles/:articleId", async (req: Request, res: Response) => {
+//   const id = req.params.articleId;
 
-  try {
-    const article = await Article.findByIdAndDelete(id);
-    res.json(article);
-  } catch (error) {
-    console.log("error while reading id:", id);
-    return res.send("Error");
-  }
-});
+//   try {
+//     const article = await Article.findByIdAndDelete(id);
+//     res.json(article);
+//   } catch (error) {
+//     console.log("error while reading id:", id);
+//     return res.send("Error");
+//   }
+// });
 
 // app.get('/userData', (req: Request, res: Response) => {
 
