@@ -35,7 +35,32 @@ app.post("/articles", async (req: Request, res: Response) => {
   newArticle.numberOfLikes = 0;
   await newArticle.save();
 
-  res.send('the new article has been stored')
+  res.json(newArticle);
+  res.send("the new article has been stored");
+});
+
+app.get("/articles/:articleId", async (req: Request, res: Response) => {
+  const id = req.params.articleId;
+
+  try {
+    const article = await Article.findById(id);
+    res.json(article);
+  } catch (error) {
+    console.log("error while reading id:", id);
+    return res.send("Error");
+  }
+});
+
+app.delete("/articles/:articleId", async (req: Request, res: Response) => {
+  const id = req.params.articleId;
+
+  try {
+    const article = await Article.findByIdAndDelete(id);
+    res.json(article);
+  } catch (error) {
+    console.log("error while reading id:", id);
+    return res.send("Error");
+  }
 });
 
 // app.get('/userData', (req: Request, res: Response) => {
