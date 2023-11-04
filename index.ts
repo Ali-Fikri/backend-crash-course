@@ -30,9 +30,9 @@ mongoose
 
 app.post("/articles", async (req: Request, res: Response) => {
   const newArticle = new Article();
-  newArticle.title = "Try it";
-  newArticle.body = "this is the body";
-  newArticle.numberOfLikes = 100;
+  newArticle.title = req.body.articleTitle;
+  newArticle.body = req.body.articleBody;
+  newArticle.numberOfLikes = 0;
   await newArticle.save();
 
   res.send('the new article has been stored')
