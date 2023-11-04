@@ -1,5 +1,6 @@
 import express, { Request, Response } from "express";
 import mongoose from "mongoose";
+import { Article } from "./models/Article";
 
 const app = express();
 app.use(express.json());
@@ -27,14 +28,15 @@ mongoose
 //   res.send(`The total is: ${num1 + num2}`);
 // });
 
-// app.post("/sayHello", (req: Request, res: Response) => {
-//   console.log(req.body);
-//   if (req.body.name) {
-//     res.send(`Hello ${req.body.name}`);
-//   } else {
-//     res.status(400).send("Name is required");
-//   }
-// });
+app.post("/articles", async (req: Request, res: Response) => {
+  const newArticle = new Article();
+  newArticle.title = "Try it";
+  newArticle.body = "this is the body";
+  newArticle.numberOfLikes = 100;
+  await newArticle.save();
+
+  res.send('the new article has been stored')
+});
 
 // app.get('/userData', (req: Request, res: Response) => {
 
